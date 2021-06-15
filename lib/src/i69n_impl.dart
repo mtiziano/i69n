@@ -16,6 +16,8 @@ String generateDartContentFromYaml(ClassMeta meta, String yamlContent) {
   prepareTodoList(null, null, todoList, messages, meta);
 
   var output = StringBuffer();
+  
+  var q = ''; // '?' for nullSafety support
 
   output.writeln(
       '// ignore_for_file: unused_element, unused_field, camel_case_types, annotate_overrides, prefer_single_quotes');
@@ -29,15 +31,15 @@ String generateDartContentFromYaml(ClassMeta meta, String yamlContent) {
   output.writeln('String get _localeName => \'${meta.localeName}\';');
   output.writeln('');
   output.writeln(
-      'String _plural(int count, {String? zero, String? one, String? two, String? few, String? many, String? other}) =>');
+      'String _plural(int count, {String$q zero, String$q one, String$q two, String$q few, String$q many, String$q other}) =>');
   output.writeln(
       '\ti69n.plural(count, _languageCode, zero:zero, one:one, two:two, few:few, many:many, other:other);');
   output.writeln(
-      'String _ordinal(int count, {String? zero, String? one, String? two, String? few, String? many, String? other}) =>');
+      'String _ordinal(int count, {String$q zero, String$q one, String$q two, String$q few, String$q many, String$q other}) =>');
   output.writeln(
       '\ti69n.ordinal(count, _languageCode, zero:zero, one:one, two:two, few:few, many:many, other:other);');
   output.writeln(
-      'String _cardinal(int count, {String? zero, String? one, String? two, String? few, String? many, String? other}) =>');
+      'String _cardinal(int count, {String$q zero, String$q one, String$q two, String$q few, String$q many, String$q other}) =>');
   output.writeln(
       '\ti69n.cardinal(count, _languageCode, zero:zero, one:one, two:two, few:few, many:many, other:other);');
   output.writeln('');
